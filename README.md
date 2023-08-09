@@ -1,12 +1,10 @@
 # Supreme Court Case Variable Encoding with LLM
 
-![Supreme Court](https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/US_Supreme_Court_Building_2010.JPG/320px-US_Supreme_Court_Building_2010.JPG)
-
 ## Overview
 
 This project involves the use of a Large Language Model (LLM) to encode variables based on text extracted from Supreme Court cases. The LLM is trained to understand and process the language used in legal documents, specifically focusing on decisions and opinions from the United States Supreme Court. The encoded variables can be used for various legal research and analysis purposes.
 
-The variables are modeled after those found in the ![Supreme Court Database](http://scdb.wustl.edu/)
+The variables are modeled after those found in the [Supreme Court Database](http://scdb.wustl.edu/)
 
 ## Features
 
@@ -22,9 +20,14 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
 1. **Installation**:
 
+First, clone the repository to your local machine using the command line prompt:
+
 ```bash
-   git clone https://github.com/yourusername/supreme-court-llm.git
+   git clone https://github.com/yourusername/SCDB-LLM.git
 ```
+
+Then, you will need to obtain an api key from openAI. 
+
 
 2. **Data Collection**: [Information on how to gather Supreme Court case text data for input.]
 
