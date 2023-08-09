@@ -3,7 +3,7 @@ import openpyxl
 import csv
 import openai
 
-openai.api_key = "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"
+openai.api_key = "[YOUR_KEY]"
 
 # Exponential backoff parameters
 max_retry_count = 5
