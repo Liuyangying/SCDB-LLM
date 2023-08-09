@@ -42,7 +42,7 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
     Then, you will need to install the necessary packages for this project to run. Navigate to the repository using the command line and install the dependencies using the following commands:
 
-    ```console
+    ```bash
     cd [your_directory]
     
     python install.py 
@@ -64,7 +64,7 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
     [pdfplumber](https://pypi.org/project/pdfplumber/)
 
-    ```console
+    ```bash
     pip install pdfplumber
     ```
 
@@ -72,7 +72,7 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
     [xlsxwriter](https://pypi.org/project/pdfplumber/)
 
-    ```console
+    ```bash
     pip install xlsxwriter
     ```
 
@@ -80,7 +80,7 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
     [pandas](https://pandas.pydata.org/)
 
-    ```console
+    ```bash
     pip install pandas
     ```
 
@@ -88,7 +88,7 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
     [openai](https://github.com/openai/openai-python)
 
-    ```console
+    ```bash
     pip install openai
     ```
 
