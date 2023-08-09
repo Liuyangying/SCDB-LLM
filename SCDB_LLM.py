@@ -1,9 +1,13 @@
+import os
 import time
 import openpyxl
 import csv
 import openai
+from dotenv import load_dotenv 
 
-openai.api_key = "[YOUR_KEY]"
+load_dotenv()
+
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # Exponential backoff parameters
 max_retry_count = 5
