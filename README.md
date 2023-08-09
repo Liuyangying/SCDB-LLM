@@ -6,21 +6,25 @@
 
 This project involves the use of a Large Language Model (LLM) to encode variables based on text extracted from Supreme Court cases. The LLM is trained to understand and process the language used in legal documents, specifically focusing on decisions and opinions from the United States Supreme Court. The encoded variables can be used for various legal research and analysis purposes.
 
+The variables are modeled after those found in the ![Supreme Court Database](http://scdb.wustl.edu/)
+
 ## Features
 
 - **Text Extraction**: The LLM is capable of extracting and processing text from Supreme Court cases, including decisions, opinions, and related documents.
 
 - **Variable Encoding**: The extracted text is processed by the LLM to encode relevant variables, which can include legal principles, key arguments, case details, and more.
 
-- **Customizable Encoding**: The encoding process can be customized based on specific research requirements and the types of variables you're interested in extracting.
-
-- **Data Export**: Encoded variables can be exported in a structured format for further analysis, data visualization, and integration with other tools.
+- **Data Export**: Encoded variables can be exported in a structured csv for further analysis, data visualization, and integration with other tools. Along with the encodings, the LLM will export explanations for the decision to encode a variable.
 
 ## Getting Started
 
 Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
-1. **Installation**: [Instructions on how to install and set up the LLM for your project.]
+1. **Installation**:
+
+```bash
+   git clone https://github.com/yourusername/supreme-court-llm.git
+```
 
 2. **Data Collection**: [Information on how to gather Supreme Court case text data for input.]
 
