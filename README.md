@@ -42,10 +42,10 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
     Then, you will need to install the necessary packages for this project to run. Navigate to the repository using the command line and install the dependencies using the following commands:
 
-    ```bash
-    $cd [your_directory]
+    ```console
+    cd [your_directory]
     
-    $python install.py 
+    python install.py 
     ```
 
     Once the dependencies have been succesfully installed, you should get the message:
@@ -64,32 +64,32 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
     [pdfplumber](https://pypi.org/project/pdfplumber/)
 
-    ```bash
-    $pip install pdfplumber
+    ```console
+    pip install pdfplumber
     ```
 
     This package will be used to extract text from pds and turn them into strings than can be fed into the LLM.
 
     [xlsxwriter](https://pypi.org/project/pdfplumber/)
 
-    ```bash
-    $pip install xlsxwriter
+    ```console
+    pip install xlsxwriter
     ```
 
     This package will be used to open, read from, and write to excel files.
 
     [pandas](https://pandas.pydata.org/)
 
-    ```bash
-    $pip install pandas
+    ```console
+    pip install pandas
     ```
 
     Pandas is a Python library that provides high-performance, easy-to-use data structures and data analysis tools for working with structured (tabular, multidimensional, potentially heterogeneous) and time series data.
 
     [openai](https://github.com/openai/openai-python)
 
-    ```bash
-    $pip install openai
+    ```console
+    pip install openai
     ```
 
     This will be used to access openai's api and internal models.
