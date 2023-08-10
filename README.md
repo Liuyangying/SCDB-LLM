@@ -94,8 +94,6 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
     This will be used to access openai's api and internal models.
 
-
-
 3. **Data Collection**: [Information on how to gather Supreme Court case text data for input.]
 
 4. **Encoding Process**: [Details on how to use the LLM to encode variables from the collected text data.]

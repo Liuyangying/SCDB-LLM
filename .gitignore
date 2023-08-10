@@ -1,5 +1,6 @@
 Raw_Output/
 Cleaned_Output/
 Cases/
-Data/
+Data/CAP_IDs_isolated.csv
+Data/CAP_IDs_text.xlsx
 .DS_store
