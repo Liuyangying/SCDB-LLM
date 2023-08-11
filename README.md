@@ -170,21 +170,3 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
      ```
 
 5. **Exporting Data**: [Instructions on how to export encoded variables for analysis.]
-
-## Example Usage
-
-```python
-# Sample Python code demonstrating how to use the LLM for variable encoding
-import supreme_llm
-
-# Initialize the LLM model
-model = supreme_llm.SupremeLLM()
-
-# Load and preprocess Supreme Court case text
-case_text = supreme_llm.load_case_text('path_to_case.txt')
-
-# Encode variables from the case text
-encoded_variables = model.encode_variables(case_text)
-
-# Print the encoded variables
-print(encoded_variables)
