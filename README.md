@@ -95,7 +95,7 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
     This will be used to access openai's api and internal models.
 
 3. **Data Collection**: 
-    The supreme court pdfs are downloaded from the case.law using Noah's script, and all come in the format: "x_[CASE_NAME]" where x is an integer. Before we can extract any text from the PDFs, the files need to be renamed with their <strong>CAP_ID</strong>, which is an ID tag that can be referenced to a corresponding row in the SCDB. To do this, first run <strong>rename.py</strong> from your terminal
+    The supreme court pdfs are downloaded from the case.law using Noah's script, and all come in the format: "pdf[x]_[CASE_NAME]" where x is an integer. Before we can extract any text from the PDFs, the files need to be renamed with their <strong>CAP_ID</strong>, which is an ID tag that can be referenced to a corresponding row in the SCDB. To do this, first run <strong>rename.py</strong> from your terminal
 
     ```bash
     python rename.py
@@ -125,7 +125,9 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
 4. **Encoding Process**:
 
-    There is a high level of customizability for <strong>SCDB_LLM.py</strong>. The first function we will look at is <strong>split_text()</strong>
+    There is a high level of customizability for <strong>SCDB_LLM.py</strong>.  We will look at each function inside  <strong>SCDB_LLM.py</strong>
+
+    <strong>split_text()</strong>
 
     ```python
     def split_text(raw_text):
@@ -143,7 +145,9 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
         supreme_court_splits.append(petionerState_text)
     ```
 
-    This function splits the raw case text into smaller chunks for each variable. In the code snippet above, the function finds the first instance of the string "petitioner" and grabs the case text up to that point. The next function we will look at is <strong>run_gpt_prompts()</strong>.
+    This function splits the raw case text into smaller chunks for each variable. In the code snippet above, the function finds the first instance of the string "petitioner" and grabs the case text up to that point.
+
+    <strong>run_gpt_prompts()</strong>.
 
      ```python
      for prompt in [f"""{supreme_court_splits[0]}""",
