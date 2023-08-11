@@ -125,7 +125,49 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
 4. **Encoding Process**:
 
-    There is a high level of customizability for <strong>SCDB_LLM.py</strong>
+    There is a high level of customizability for <strong>SCDB_LLM.py</strong>. The first function we will look at is <strong>split_text()</strong>
+
+    ```python
+    def split_text(raw_text):
+
+        supreme_court_splits = []
+
+        #petitioner_state
+        index = raw_text.find(("petitioner"))
+
+        if index == -1:
+            petionerState_text = raw_text[:1000]
+        else:
+            petionerState_text = raw_text[:index + len("petitioner")]
+
+        supreme_court_splits.append(petionerState_text)
+    ```
+
+    This function splits the raw case text into smaller chunks for each variable. In the code snippet above, the function finds the first instance of the string "petitioner" and grabs the case text up to that point. The next function we will look at is <strong>run_gpt_prompts()</strong>.
+
+     ```python
+     for prompt in [f"""{supreme_court_splits[0]}""",
+                    f"""{supreme_court_splits[1]}"""...]
+     ```
+
+     The above array allows you to customize the prompts passed into the llm. Each item in the array consists of the text split from the previous function followed by a prompt asking the LLM to encode the variable based on the text.
+
+    ```python
+     for retry_count in range(max_retry_count + 1):
+            try:
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo-16k",
+                    messages=[{"role": "system", "content": prompt}],
+                    )
+                if prompt_count == 8:
+                    encoding = justice_encoding_dict.get(response.choices[0].message.content)
+                    responses.append(encoding)
+                else:
+                    responses.append(response.choices[0].message.content)
+
+                prompt_count +=1
+                break
+     ```
 
 5. **Exporting Data**: [Instructions on how to export encoded variables for analysis.]
 

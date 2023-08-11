@@ -211,7 +211,8 @@ def run_gpt_prompts(case_id, raw_text):
     supreme_court_splits = split_text(raw_text)
 
     prompt_count = 0
-
+    
+    #List of Prompts
     for prompt in [f"""{supreme_court_splits[0]} 
 
                     If the petitioner of the above case originated from a distinct location, please identify it using the numerical numbering system below. The answer will almost always be 0 unless explicitly stated 
