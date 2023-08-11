@@ -19,3 +19,4 @@ if __name__ == "__main__":
     path = "Cases"
     csv_file = "Data/CAP_IDs_isolated.csv"
     rename_pdfs(path, csv_file)
+    print("Renamed all files succesfully")

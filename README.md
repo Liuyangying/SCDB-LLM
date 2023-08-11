@@ -94,9 +94,38 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
 
     This will be used to access openai's api and internal models.
 
-3. **Data Collection**: [Information on how to gather Supreme Court case text data for input.]
+3. **Data Collection**: 
+    The supreme court pdfs are downloaded from the case.law using Noah's script, and all come in the format: "x_[CASE_NAME]" where x is an integer. Before we can extract any text from the PDFs, the files need to be renamed with their <strong>CAP_ID</strong>, which is an ID tag that can be referenced to a corresponding row in the SCDB. To do this, first run <strong>rename.py</strong> from your terminal
 
-4. **Encoding Process**: [Details on how to use the LLM to encode variables from the collected text data.]
+    ```bash
+    python rename.py
+    ```
+
+    Once it completes running, you should get the following message in your terminal:
+
+    ```bash
+    Renamed all files succesfully
+    ```
+
+    <strong>rename.py</strong> works by first accessing <strong>"CAP_IDs_isolated.csv"</strong> in the <strong>Data</strong> folder, where the xth row corresponds to <strong>CAP_ID</strong> for the file named "x_[CASE_NAME]". It renames the files directly in the Cases folder.
+
+    Next, we need to actually extract the raw text from the pdfs. Run the following command from terminal:
+
+    ```bash
+    python text_extraction.py
+    ```
+
+     Once it completes running, you should get the following message in your terminal:
+
+    ```bash
+    Succesfully saved to 'Data/CAP_IDs_text.xlsx'
+    ```
+
+    <strong>text_extraction.py</strong> works by looping through every pdf in the <strong>Cases</strong> folder and using a packaged called [pdfplumber](https://pypi.org/project/pdfplumber/), writes the raw text of the pdf to the file named <strong>CAP_IDs_text.xlsx</strong> in the Data folder. Each row contains the <strong>CAP_ID</strong> in the first column and the case text in the second column. Once this is completed, the text of every supreme court cases has been extracted.
+
+4. **Encoding Process**:
+
+    There is a high level of customizability for <strong>SCDB_LLM.py</strong>
 
 5. **Exporting Data**: [Instructions on how to export encoded variables for analysis.]
 

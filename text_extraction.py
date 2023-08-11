@@ -28,3 +28,5 @@ if __name__ == "__main__":
     path = "Cases"
     excel_file = "Data/CAP_IDs_text.xlsx"
     extract_text_from_pdfs(path, excel_file)
+
+    print("Succesfully saved to 'Data/CAP_IDs_text.xlsx'")
