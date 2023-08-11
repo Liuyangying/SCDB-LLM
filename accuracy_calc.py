@@ -9,8 +9,6 @@ def compute_accuracy(gpt_output_file, true_values_file):
     merged_data = pd.merge(gpt_output_data, true_values_data, on="caseId", how="inner")
     merged_data['petitionerState_y'] = merged_data['petitionerState_y'].fillna(0)
 
-    print(merged_data.head(5))
-
     # Compute accuracy for each column (excluding "case_id")
     accuracy_results = {}
     for column in gpt_output_data.columns:
