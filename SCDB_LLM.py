@@ -128,7 +128,7 @@ justice_encoding_dict = {
 
 def split_text(raw_text):
 
-    supreme_court_splits = []
+    supreme_court_splits = [] #each element corresponds to the text being passed in for each variable
 
     #petitioner_state
     index = raw_text.find(("petitioner"))
@@ -161,8 +161,6 @@ def split_text(raw_text):
         caseDisposition_text = raw_text[:index + 50]
     
     supreme_court_splits.append(caseDisposition_text)
-
-    print(caseDisposition_text)
 
     #precedentAlteration
     precedentAlteration_text = raw_text[:100]
@@ -202,6 +200,7 @@ def split_text(raw_text):
         cheif_text = raw_text[index - len("Argued") : index + 50]
     
     supreme_court_splits.append(cheif_text)
+    
     return supreme_court_splits
 
 
@@ -213,7 +212,7 @@ def run_gpt_prompts(case_id, raw_text):
     prompt_count = 0
     
     #List of Prompts
-    for prompt in [f"""{supreme_court_splits[0]} 
+    for prompt in [f"""{supreme_court_splits[0]}
 
                     If the petitioner of the above case originated from a distinct location, please identify it using the numerical numbering system below. The answer will almost always be 0 unless explicitly stated 
 
@@ -283,7 +282,7 @@ def run_gpt_prompts(case_id, raw_text):
                     63: Indian
                     64: Dakota
 
-                    Along with the numerical answer, include an explanation of why. An example answer would be “0-The explanation is blah blah blah”. The answer must be in this format
+                    Along with the numerical answer, include an explanation of why. An example answer would be “0-The explanation is blah blah blah”. The answer must be in this format.
 
                    """, 
                    f"""{supreme_court_splits[1]} 
@@ -470,6 +469,10 @@ def run_gpt_prompts(case_id, raw_text):
                     f"""{supreme_court_splits[9]}
 
                     A supreme court case was argued and decided in this time period. What was the last name of the chief justice. Respond with only the last name. 
+
+                    'Bob'
+
+                    Do not add anything else to return result, it should just be the single name.
                     """
                     ]:
         
@@ -477,25 +480,25 @@ def run_gpt_prompts(case_id, raw_text):
             try:
                 response = openai.ChatCompletion.create(
                     model="gpt-3.5-turbo-16k",
-                    messages=[{"role": "system", "content": prompt}],
+                    messages=[{"role": "system", "content": prompt}], #passing prompt to api
                     )
-                if prompt_count == 8:
+                if prompt_count == 8: #special case handling for chief justice
                     encoding = justice_encoding_dict.get(response.choices[0].message.content)
                     responses.append(encoding)
                 else:
-                    responses.append(response.choices[0].message.content)
+                    responses.append(response.choices[0].message.content) #appends output
 
                 prompt_count +=1
                 break
-            except openai.error.ServiceUnavailableError:
+            except openai.error.ServiceUnavailableError: #OpenAI's servers are being overloaded with requests
                 if retry_count < max_retry_count:
                     print(f"Request failed, retrying in {retry_delay_base * (2**retry_count)} seconds...")
                     time.sleep(retry_delay_base * (2**retry_count))
-            except openai.error.RateLimitError:
+            except openai.error.RateLimitError:  #The number of tokens passed per minute in exceeds openai's rate limit
                 if retry_count < max_retry_count:
                     print(f"Request failed, retrying in {retry_delay_base * (2**retry_count)} seconds...")
                     time.sleep(retry_delay_base * (2**retry_count))
-            except openai.error.Timeout:
+            except openai.error.Timeout: #Exceeding credit limits OpenAI has on your account.
                 if retry_count < max_retry_count:
                     print(f"Request failed, retrying in {retry_delay_base * (2**retry_count)} seconds...")
                     time.sleep(retry_delay_base * (2**retry_count))
@@ -503,7 +506,7 @@ def run_gpt_prompts(case_id, raw_text):
     return responses
 
 def main():
-    excel_file = openpyxl.load_workbook("Data/CAP_IDs_text.xlsx")
+    excel_file = openpyxl.load_workbook("Data/CAP_IDs_text.xlsx") #grabs the raw text for each case from excel file
     csv_file = open("Raw_Output/GPT_output.csv", "w", newline="")
     writer = csv.writer(csv_file, delimiter=",")
 
@@ -520,11 +523,11 @@ def main():
     sheet = excel_file["Sheet1"]
     
     cases = 0
-    for row in sheet.iter_rows(max_row=100, values_only=True):
+    for row in sheet.iter_rows(max_row=100, values_only=True): #Adjust number of cases to read by adjusting max_row
         case_id = row[0]
         raw_text = row[1]
         responses = run_gpt_prompts(case_id, raw_text)
-        writer.writerow([case_id] + responses)
+        writer.writerow([case_id] + responses) #writes responses out to csv for each case
         cases += 1
         print("Completed Case #" + str(cases) +"\n")
 

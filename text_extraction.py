@@ -16,8 +16,8 @@ def extract_text_from_pdfs(path, excel_file):
             for page in pdf.pages:
                 text += page.extract_text()
             filename = file.split(".pdf")[0]
-            worksheet.write(row, col,     filename)
-            worksheet.write(row, col + 1, text)
+            worksheet.write(row, col,     filename) #The first column is the CAP_ID
+            worksheet.write(row, col + 1, text)  #The second column is the actual case text
         row += 1
     
             

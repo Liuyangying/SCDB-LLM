@@ -1,6 +1,8 @@
 import os
 import csv
 
+#Reads CAP_IDs_isolated.csv, converts pdfs in Cases folder a name with CAP_ID
+
 def rename_pdfs(path, csv_file):
     with open(csv_file, "r") as csvfile:
         reader = csv.reader(csvfile, delimiter=",")

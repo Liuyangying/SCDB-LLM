@@ -33,6 +33,7 @@ Follow these steps to start using the Supreme Court Case Variable Encoding LLM:
     For more detailed information on how to manage your OpenAI API key and use it effectively, refer to the official [OpenAI API documentation](https://platform.openai.com/docs/introduction).
 
 2. **Installation**:
+    This was built using python3 and has not been tested on older installations of python.
 
     First, clone the repository to your local machine using the command line prompt:
 
